@@ -31,14 +31,11 @@ class CloudsController < ApplicationController
 
   # PATCH/PUT /clouds/1 or /clouds/1.json
   def update
-    respond_to do |format|
-      if @cloud.update(cloud_params)
-        format.html { redirect_to @cloud, notice: "Cloud was successfully updated." }
-        format.json { render :show, status: :ok, location: @cloud }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @cloud.errors, status: :unprocessable_entity }
-      end
+    @cloud = Cloud.find(params[:id])
+    if @cloud.update_attributes(cloud_params)
+      redirect_to clouds_url
+    else
+      render :edit
     end
   end
 
