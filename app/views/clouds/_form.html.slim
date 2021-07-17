@@ -1,18 +1,24 @@
-= form_with(model: cloud, local: true) do |form|
-  - if cloud.errors.any?
-    #error_explanation
-      h2
-        = pluralize(cloud.errors.count, "error")
-        |  prohibited this cloud from being saved:
-      ul
-        - cloud.errors.full_messages.each do |message|
-          li
-            = message
-  .field
-    = form.label :name
-    = form.text_field :name
-  .field
-    = form.label :vendor
-    = form.text_field :vendor
-  .actions
-    = form.submit
+.form-horizontal
+  = form_for @cloud do |f|
+    - if @cloud.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@cloud.errors.count, "error")} prohibited this cloud from being saved:"
+        ul
+          - @cloud.errors.full_messages.each do |message|
+            li = message
+
+    .form-group
+      .row.mt-3.mb-3
+        = f.label :name, class: "control-label col-md-1"
+        .col-md-3
+          = f.text_field :name, class: "form-control"
+    .form-group
+      .row.mt-3.mb-3
+        = f.label :vendor, class: "control-label col-md-1"
+        .col-md-3
+          = f.text_field :vendor, class: "form-control"
+
+    .col-md-4
+      ul.list-inline.text-end
+        = link_to '戻る', clouds_path, class: "btn btn-sm btn-outline-secondary me-3"
+        = f.submit class: "btn me-3 btn-sm btn-outline-primary"
