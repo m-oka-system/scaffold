@@ -1,27 +1,27 @@
-p#notice
-  = notice
-h1
-  | Clouds
-table
-  thead
-    tr
-      th
-        | Name
-      th
-        | Vendor
-      th[colspan="3"]
-  tbody
-    - @clouds.each do |cloud|
-      tr
-        td
-          = cloud.name
-        td
-          = cloud.vendor
-        td
-          = link_to 'Show', cloud
-        td
-          = link_to 'Edit', edit_cloud_path(cloud)
-        td
-          = link_to 'Destroy', cloud, method: :delete, data: { confirm: 'Are you sure?' }
-br
-= link_to 'New Cloud', new_cloud_path
+.row
+  .col-md-6.offset-md-3
+    h1 クラウド一覧
+
+  .col-md-6.offset-md-3
+    ul.list-inline.text-end
+      li.list-inline-item
+        span.glyphicon.glyphicon-plus
+        = link_to '新規登録', new_cloud_path, class: "btn btn-sm btn-outline-primary"
+
+  .col-md-6.offset-md-3
+    .table-responsive
+      table.table.table-hover
+        thead.table-light
+          tr.success
+            th 名前
+            th ベンダー
+            th
+            th
+
+        tbody
+          - @clouds.each do |cloud|
+            tr
+              td = cloud.name
+              td = cloud.vendor
+              td = link_to '編集', edit_cloud_path(cloud), class: "btn btn-sm btn-outline-success"
+              td = link_to '削除', cloud, data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-sm btn-outline-danger"
