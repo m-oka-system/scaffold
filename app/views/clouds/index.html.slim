@@ -1,14 +1,15 @@
 .row
-  .col-md-6.offset-md-3
-    h1 クラウド一覧
+  .col-md-6
+    h1.mt-3.mb-5 クラウド一覧
 
-  .col-md-6.offset-md-3
+.row
+  .col-md-6
     ul.list-inline.text-end
       li.list-inline-item
-        span.glyphicon.glyphicon-plus
         = link_to '新規登録', new_cloud_path, class: "btn btn-sm btn-outline-primary"
 
-  .col-md-6.offset-md-3
+.row
+  .col-md-6
     .table-responsive
       table.table.table-hover
         thead.table-light
