@@ -23,7 +23,7 @@ class CloudsController < ApplicationController
   def create
     @cloud = Cloud.new(cloud_params)
     if @cloud.save
-      redirect_to clouds_url
+      redirect_to clouds_url, notice: "#{@cloud.name} を登録しました。"
     else
       render :new
     end
@@ -33,7 +33,7 @@ class CloudsController < ApplicationController
   def update
     @cloud = Cloud.find(params[:id])
     if @cloud.update_attributes(cloud_params)
-      redirect_to clouds_url
+      redirect_to clouds_url, notice: "#{@cloud.name} を更新しました。"
     else
       render :edit
     end
@@ -42,7 +42,7 @@ class CloudsController < ApplicationController
   # DELETE /clouds/1 or /clouds/1.json
   def destroy
     @cloud = Cloud.find(params[:id]).destroy
-    redirect_to clouds_url
+    redirect_to clouds_url, notice: "#{@cloud.name} を削除しました。"
   end
 
   private
