@@ -7,8 +7,8 @@ class CloudsController < ApplicationController
   end
 
   # GET /clouds/1 or /clouds/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /clouds/new
   def new
@@ -22,15 +22,10 @@ class CloudsController < ApplicationController
   # POST /clouds or /clouds.json
   def create
     @cloud = Cloud.new(cloud_params)
-
-    respond_to do |format|
-      if @cloud.save
-        format.html { redirect_to @cloud, notice: "Cloud was successfully created." }
-        format.json { render :show, status: :created, location: @cloud }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @cloud.errors, status: :unprocessable_entity }
-      end
+    if @cloud.save
+      redirect_to clouds_url
+    else
+      render :new
     end
   end
 
