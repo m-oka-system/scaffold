@@ -41,11 +41,8 @@ class CloudsController < ApplicationController
 
   # DELETE /clouds/1 or /clouds/1.json
   def destroy
-    @cloud.destroy
-    respond_to do |format|
-      format.html { redirect_to clouds_url, notice: "Cloud was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @cloud = Cloud.find(params[:id]).destroy
+    redirect_to clouds_url
   end
 
   private
