@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cloud.name %>
+</p>
+
+<p>
+  <strong>Vendor:</strong>
+  <%= @cloud.vendor %>
+</p>
+
+<%= link_to 'Edit', edit_cloud_path(@cloud) %> |
+<%= link_to 'Back', clouds_path %>
