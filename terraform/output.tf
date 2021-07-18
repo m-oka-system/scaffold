@@ -21,6 +21,18 @@ output "private_subnet_id_1" {
   value = aws_subnet.private[1].id
 }
 
+output "elb_sg_id" {
+  value = aws_security_group.elb.id
+}
+
+output "app_sg_id" {
+  value = aws_security_group.app.id
+}
+
+output "rds_sg_id" {
+  value = aws_security_group.rds.id
+}
+
 ################################
 # Key pair
 ################################
