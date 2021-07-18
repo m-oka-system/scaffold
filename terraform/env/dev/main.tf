@@ -19,12 +19,15 @@ provider "aws" {
   }
 }
 
+provider "http" {}
+
 module "dev" {
   source = "../.."
 
   prefix     = var.prefix
   vpc_cidr   = var.vpc_cidr
   public_key = var.public_key
+  vpc_id     = module.dev.vpc_id
 }
 
 module "dev_iam" {
