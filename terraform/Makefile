@@ -9,3 +9,6 @@ tfv:
 
 tfa:
 	@${CD} && terraform apply
+
+tfg:
+	@${CD} && terraform get
