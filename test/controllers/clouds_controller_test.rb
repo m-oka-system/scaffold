@@ -20,12 +20,7 @@ class CloudsControllerTest < ActionDispatch::IntegrationTest
       post clouds_url, params: { cloud: { name: @cloud.name, vendor: @cloud.vendor } }
     end
 
-    assert_redirected_to cloud_url(Cloud.last)
-  end
-
-  test "should show cloud" do
-    get cloud_url(@cloud)
-    assert_response :success
+    assert_redirected_to clouds_url
   end
 
   test "should get edit" do
@@ -35,7 +30,7 @@ class CloudsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update cloud" do
     patch cloud_url(@cloud), params: { cloud: { name: @cloud.name, vendor: @cloud.vendor } }
-    assert_redirected_to cloud_url(@cloud)
+    assert_redirected_to clouds_url
   end
 
   test "should destroy cloud" do
