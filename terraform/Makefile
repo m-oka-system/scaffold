@@ -1,6 +1,9 @@
 CD = [[ -d env/${ENV} ]] && cd env/${ENV}
 ENV = $1
 
+tfi:
+	@${CD} && terraform init
+
 tfp:
 	@${CD} && terraform plan
 
