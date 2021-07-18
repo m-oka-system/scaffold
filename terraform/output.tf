@@ -20,3 +20,10 @@ output "private_subnet_id_0" {
 output "private_subnet_id_1" {
   value = aws_subnet.private[1].id
 }
+
+################################
+# Key pair
+################################
+output "key_name" {
+  value = aws_key_pair.this.key_name
+}

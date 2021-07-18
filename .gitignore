@@ -28,3 +28,4 @@
 
 # Terraform
 .terraform
+*.pem
