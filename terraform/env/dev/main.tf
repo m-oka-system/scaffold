@@ -26,3 +26,7 @@ module "dev" {
   vpc_cidr   = var.vpc_cidr
   public_key = var.public_key
 }
+
+module "dev_iam" {
+  source = "../../modules/iam"
+}
