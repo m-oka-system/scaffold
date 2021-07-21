@@ -34,8 +34,10 @@ module "iam" {
   source = "../../modules/iam"
 }
 
-module "codecommit" {
-  source = "../../modules/code"
+module "pipeline" {
+  source = "../../modules/pipeline"
+
+  codebuild_role_arn = module.iam.codebuild_role_arn
 }
 
 module "dev_app" {
