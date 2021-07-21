@@ -1,5 +1,5 @@
 variable "prefix" {
-  default = "scaffold"
+  default = "dev-scaffold"
 }
 
 variable "vpc_cidr" {
