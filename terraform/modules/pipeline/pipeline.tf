@@ -44,6 +44,26 @@ resource "aws_codebuild_project" "this" {
     type                        = "LINUX_CONTAINER"
     image_pull_credentials_type = "CODEBUILD"
     privileged_mode             = true
+
+    environment_variable {
+      name  = "AWS_ACCOUNT_ID"
+      value = var.account_id
+    }
+
+    environment_variable {
+      name  = "AWS_DEFAULT_REGION"
+      value = "ap-northeast-1"
+    }
+
+    environment_variable {
+      name  = "IMAGE_REPO_NAME"
+      value = aws_ecr_repository.this.name
+    }
+
+    environment_variable {
+      name  = "IMAGE_TAG"
+      value = "latest"
+    }
   }
 
   logs_config {

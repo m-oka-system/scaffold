@@ -37,6 +37,7 @@ module "iam" {
 module "pipeline" {
   source = "../../modules/pipeline"
 
+  account_id         = data.aws_caller_identity.current.account_id
   codebuild_role_arn = module.iam.codebuild_role_arn
 }
 

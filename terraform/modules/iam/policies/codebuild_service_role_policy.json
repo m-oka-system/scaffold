@@ -57,6 +57,19 @@
       ]
     },
     {
+      "Sid": "ECRPushPolicy",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:CompleteLayerUpload",
+        "ecr:InitiateLayerUpload",
+        "ecr:PutImage",
+        "ecr:UploadLayerPart"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
       "Sid": "ECRAuthPolicy",
       "Effect": "Allow",
       "Action": [
