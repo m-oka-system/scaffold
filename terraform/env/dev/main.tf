@@ -33,3 +33,19 @@ module "dev" {
 module "dev_iam" {
   source = "../../modules/iam"
 }
+
+module "dev_app" {
+  source = "../../modules/ec2"
+
+  prefix           = var.prefix
+  subnet_id        = module.dev.public_subnet_id_0
+  sg_id            = module.dev.app_sg_id
+  instance_profile = module.dev_iam.instance_profile_name
+  key_name         = module.dev.key_name
+  role             = "app"
+  instance_type    = "t2.micro"
+}
+
+output "public_ip_app" {
+  value = module.dev_app.public_ip
+}
