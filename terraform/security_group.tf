@@ -66,19 +66,19 @@ resource "aws_security_group_rule" "in_ssh_from_myip" {
   security_group_id = aws_security_group.app.id
 }
 
-resource "aws_security_group_rule" "in_http_from_myip" {
+resource "aws_security_group_rule" "in_rails_from_myip" {
   type              = "ingress"
-  from_port         = 80
-  to_port           = 80
+  from_port         = 3000
+  to_port           = 3000
   protocol          = "tcp"
   cidr_blocks       = [local.allowed_cidr]
   security_group_id = aws_security_group.app.id
 }
 
-resource "aws_security_group_rule" "in_http_from_elb" {
+resource "aws_security_group_rule" "in_rails_from_elb" {
   type                     = "ingress"
-  from_port                = 80
-  to_port                  = 80
+  from_port                = 3000
+  to_port                  = 3000
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.elb.id
   security_group_id        = aws_security_group.app.id
