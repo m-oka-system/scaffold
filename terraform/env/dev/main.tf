@@ -30,7 +30,7 @@ module "dev" {
   vpc_id     = module.dev.vpc_id
 }
 
-module "dev_iam" {
+module "iam" {
   source = "../../modules/iam"
 }
 
@@ -44,7 +44,7 @@ module "dev_app" {
   prefix           = var.prefix
   subnet_id        = module.dev.public_subnet_id_0
   sg_id            = module.dev.app_sg_id
-  instance_profile = module.dev_iam.instance_profile_name
+  instance_profile = module.iam.instance_profile_name
   key_name         = module.dev.key_name
   role             = "app"
   instance_type    = "t2.micro"
