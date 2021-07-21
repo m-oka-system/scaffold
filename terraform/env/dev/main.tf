@@ -34,6 +34,10 @@ module "dev_iam" {
   source = "../../modules/iam"
 }
 
+module "codecommit" {
+  source = "../../modules/code"
+}
+
 module "dev_app" {
   source = "../../modules/ec2"
 
