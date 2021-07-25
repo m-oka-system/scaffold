@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: rails s -p 3000 -b '0.0.0.0'
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/workspace
+    environment:
+      RAILS_ENV: production
+      RAILS_SERVE_STATIC_FILES: true
+      RDS_USER: admin
+      RDS_PASSWORD: password
+      RDS_HOSTNAME: scaffold.cnio2sb0qm8v.ap-northeast-1.rds.amazonaws.com
