@@ -9,7 +9,7 @@ services:
       - .:/workspace
     environment:
       RAILS_ENV: production
-      RAILS_SERVE_STATIC_FILES: true
+      RAILS_SERVE_STATIC_FILES: 1
       MYSQL_ROOT_USER: admin
       MYSQL_ROOT_PASSWORD: password
       RDS_HOST_NAME: scaffold.cnio2sb0qm8v.ap-northeast-1.rds.amazonaws.com
