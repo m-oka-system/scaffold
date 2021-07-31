@@ -12,3 +12,4 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /workspace
 COPY . .
 RUN bundle install
+RUN rails assets:precompile
