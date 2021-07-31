@@ -10,6 +10,7 @@ services:
     environment:
       RAILS_ENV: production
       RAILS_SERVE_STATIC_FILES: 1
-      MYSQL_ROOT_USER: admin
-      MYSQL_ROOT_PASSWORD: password
-      RDS_HOST_NAME: scaffold.cnio2sb0qm8v.ap-northeast-1.rds.amazonaws.com
+      MYSQL_ROOT_USER: ${MYSQL_ROOT_USER}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      RDS_HOST_NAME: ${RDS_HOST_NAME}
+      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
