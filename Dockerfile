@@ -8,7 +8,9 @@ RUN apt-get update && apt-get install -y \
   default-mysql-client \
   dnsutils \
   iputils-ping \
-  net-tools
+  net-tools \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 WORKDIR /workspace
 COPY . .
 RUN bundle install
