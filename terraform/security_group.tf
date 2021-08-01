@@ -3,11 +3,11 @@
 ################################
 # ELB
 resource "aws_security_group" "elb" {
-  name   = "${var.prefix}-elb-sg"
+  name   = "${var.env}-${var.project}-elb-sg"
   vpc_id = var.vpc_id
 
   tags = {
-    Name = "${var.prefix}-elb-sg"
+    Name = "${var.env}-${var.project}-elb-sg"
   }
 }
 
@@ -40,11 +40,11 @@ resource "aws_security_group_rule" "out_all_from_elb" {
 
 # EC2
 resource "aws_security_group" "app" {
-  name   = "${var.prefix}-app-sg"
+  name   = "${var.env}-${var.project}-app-sg"
   vpc_id = var.vpc_id
 
   tags = {
-    Name = "${var.prefix}-app-sg"
+    Name = "${var.env}-${var.project}-app-sg"
   }
 }
 
@@ -95,11 +95,11 @@ resource "aws_security_group_rule" "out_all_from_app" {
 
 # RDS
 resource "aws_security_group" "rds" {
-  name   = "${var.prefix}-rds-sg"
+  name   = "${var.env}-${var.project}-rds-sg"
   vpc_id = var.vpc_id
 
   tags = {
-    Name = "${var.prefix}-rds-sg"
+    Name = "${var.env}-${var.project}-rds-sg"
   }
 }
 

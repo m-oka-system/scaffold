@@ -24,10 +24,10 @@ resource "aws_instance" "app" {
   }
 
   tags = {
-    Name = "${var.prefix}-${var.role}"
+    Name = "${var.env}-${var.project}-${var.role}"
   }
 
   volume_tags = {
-    Name = "${var.prefix}-${var.role}"
+    Name = "${var.env}-${var.project}-${var.role}"
   }
 }
