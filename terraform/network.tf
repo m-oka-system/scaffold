@@ -7,7 +7,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name = "${var.prefix}-vpc"
+    Name = "${var.env}-${var.project}-vpc"
   }
 }
 
@@ -18,7 +18,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = "${var.prefix}-igw"
+    Name = "${var.env}-${var.project}-igw"
   }
 }
 
@@ -35,7 +35,7 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 
   tags = {
-    "Name" = "${var.prefix}-public-subnet-${count.index + 1}"
+    "Name" = "${var.env}-${var.project}-public-subnet-${count.index + 1}"
   }
 }
 
@@ -47,7 +47,7 @@ resource "aws_subnet" "private" {
   map_public_ip_on_launch = true
 
   tags = {
-    "Name" = "${var.prefix}-private-subnet-${count.index + 1}"
+    "Name" = "${var.env}-${var.project}-private-subnet-${count.index + 1}"
   }
 }
 
@@ -58,7 +58,7 @@ resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = "${var.prefix}-public-route"
+    Name = "${var.env}-${var.project}-public-route"
   }
 }
 
@@ -81,7 +81,7 @@ resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.vpc.id
 
   tags = {
-    Name = "${var.prefix}-private-route"
+    Name = "${var.env}-${var.project}-private-route"
   }
 }
 

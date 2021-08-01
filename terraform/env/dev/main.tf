@@ -24,7 +24,8 @@ provider "http" {}
 module "dev" {
   source = "../.."
 
-  prefix     = "${var.env}-${var.project}"
+  project    = var.project
+  env        = var.env
   vpc_cidr   = var.vpc_cidr
   public_key = var.public_key
   vpc_id     = module.dev.vpc_id
@@ -47,7 +48,8 @@ module "pipeline" {
 module "dev_app" {
   source = "../../modules/ec2"
 
-  prefix           = "${var.env}-${var.project}"
+  project          = var.project
+  env              = var.env
   subnet_id        = module.dev.public_subnet_id_0
   sg_id            = module.dev.app_sg_id
   instance_profile = module.iam.instance_profile_name
