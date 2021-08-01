@@ -2,15 +2,15 @@
 # Code Commit
 ################################
 resource "aws_codecommit_repository" "this" {
-  repository_name = "sccafold"
-  description     = "App repository for sccafold"
+  repository_name = var.project
+  description     = "App repository for ${var.project}"
 }
 
 ################################
 # ECR
 ################################
 resource "aws_ecr_repository" "this" {
-  name                 = "sccafold"
+  name                 = var.project
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
@@ -22,8 +22,8 @@ resource "aws_ecr_repository" "this" {
 # Code Build
 ################################
 resource "aws_codebuild_project" "this" {
-  name           = "sccafold"
-  description    = "App build project for sccafold"
+  name           = var.project
+  description    = "App build project for ${var.project}"
   build_timeout  = 5
   queued_timeout = 5
   service_role   = var.codebuild_role_arn
@@ -52,7 +52,7 @@ resource "aws_codebuild_project" "this" {
 
     environment_variable {
       name  = "AWS_DEFAULT_REGION"
-      value = "ap-northeast-1"
+      value = var.region
     }
 
     environment_variable {
@@ -68,7 +68,7 @@ resource "aws_codebuild_project" "this" {
 
   logs_config {
     cloudwatch_logs {
-      group_name  = "/codebuild/sccafold"
+      group_name  = "/codebuild/${var.env}/${var.project}"
       stream_name = ""
     }
   }
