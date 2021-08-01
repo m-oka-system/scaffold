@@ -1,5 +1,17 @@
-variable "prefix" {
-  default = "dev-scaffold"
+variable "region" {
+  default = "ap-northeast-1"
+}
+
+variable "profile" {
+  default = "cloud02"
+}
+
+variable "project" {
+  default = "scaffold"
+}
+
+variable "env" {
+  default = "dev"
 }
 
 variable "vpc_cidr" {

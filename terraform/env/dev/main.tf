@@ -9,8 +9,8 @@ terraform {
 }
 
 provider "aws" {
-  region  = "ap-northeast-1"
-  profile = "cloud02"
+  region  = var.region
+  profile = var.profile
 
   default_tags {
     tags = {
@@ -24,7 +24,7 @@ provider "http" {}
 module "dev" {
   source = "../.."
 
-  prefix     = var.prefix
+  prefix     = "${var.env}-${var.project}"
   vpc_cidr   = var.vpc_cidr
   public_key = var.public_key
   vpc_id     = module.dev.vpc_id
@@ -37,6 +37,9 @@ module "iam" {
 module "pipeline" {
   source = "../../modules/pipeline"
 
+  region             = var.region
+  project            = var.project
+  env                = var.env
   account_id         = data.aws_caller_identity.current.account_id
   codebuild_role_arn = module.iam.codebuild_role_arn
 }
@@ -44,7 +47,7 @@ module "pipeline" {
 module "dev_app" {
   source = "../../modules/ec2"
 
-  prefix           = var.prefix
+  prefix           = "${var.env}-${var.project}"
   subnet_id        = module.dev.public_subnet_id_0
   sg_id            = module.dev.app_sg_id
   instance_profile = module.iam.instance_profile_name
