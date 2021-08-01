@@ -33,3 +33,20 @@ resource "aws_iam_role_policy_attachment" "codebuild" {
   policy_arn = aws_iam_policy.codebuild.arn
 }
 
+# ECS
+locals {
+  esc_policy_arn = [
+    "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+    "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
+  ]
+}
+resource "aws_iam_role" "ecs" {
+  name               = "ecs-task-execution-role"
+  assume_role_policy = file("../../modules/iam/policies/ecs_assume_role_policy.json")
+}
+
+resource "aws_iam_role_policy_attachment" "ecs" {
+  count      = length(local.esc_policy_arn)
+  role       = aws_iam_role.ecs.name
+  policy_arn = local.esc_policy_arn[count.index]
+}
