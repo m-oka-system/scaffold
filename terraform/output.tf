@@ -39,3 +39,10 @@ output "rds_sg_id" {
 output "key_name" {
   value = aws_key_pair.this.key_name
 }
+
+################################
+# RDS
+################################
+output "rds_endpoint" {
+  value = aws_db_instance.this.endpoint
+}

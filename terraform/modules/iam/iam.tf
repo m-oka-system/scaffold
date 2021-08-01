@@ -50,3 +50,14 @@ resource "aws_iam_role_policy_attachment" "ecs" {
   role       = aws_iam_role.ecs.name
   policy_arn = local.esc_policy_arn[count.index]
 }
+
+# RDS
+resource "aws_iam_role" "rds" {
+  name               = "rds-enhanced-monitoring-role"
+  assume_role_policy = file("../../modules/iam/policies/rds_assume_role_policy.json")
+}
+
+resource "aws_iam_role_policy_attachment" "rds" {
+  role       = aws_iam_role.rds.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
+}
