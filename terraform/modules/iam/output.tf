@@ -9,3 +9,7 @@ output "codebuild_role_arn" {
 output "ecs_role_arn" {
   value = aws_iam_role.ecs.arn
 }
+
+output "rds_role_arn" {
+  value = aws_iam_role.rds.arn
+}
