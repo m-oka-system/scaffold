@@ -24,11 +24,14 @@ provider "http" {}
 module "dev" {
   source = "../.."
 
-  project    = var.project
-  env        = var.env
-  vpc_cidr   = var.vpc_cidr
-  public_key = var.public_key
-  vpc_id     = module.dev.vpc_id
+  region         = var.region
+  project        = var.project
+  env            = var.env
+  vpc_cidr       = var.vpc_cidr
+  public_key     = var.public_key
+  vpc_id         = module.dev.vpc_id
+  ecr_repository = module.pipeline.ecr_repository
+  ecs_role_arn   = module.iam.ecs_role_arn
 }
 
 module "iam" {
