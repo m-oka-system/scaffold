@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: workspace_production
-  username: workspace
-  password: <%= ENV['WORKSPACE_DATABASE_PASSWORD'] %>
+  username: <%= ENV['MYSQL_ROOT_USER'] %>
+  password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
+  host: <%= ENV['RDS_HOST_NAME'] %>
