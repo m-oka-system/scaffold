@@ -24,19 +24,21 @@ provider "http" {}
 module "dev" {
   source = "../.."
 
-  region            = var.region
-  project           = var.project
-  env               = var.env
-  vpc_cidr          = var.vpc_cidr
-  public_key        = var.public_key
-  vpc_id            = module.dev.vpc_id
-  ecr_repository    = module.pipeline.ecr_repository
-  ecs_role_arn      = module.iam.ecs_role_arn
-  db_user_name      = var.db_user_name
-  db_user_password  = var.db_user_password
-  db_instance_class = var.db_instance_class
-  rds_role_arn      = module.iam.rds_role_arn
-
+  region              = var.region
+  project             = var.project
+  env                 = var.env
+  vpc_cidr            = var.vpc_cidr
+  public_key          = var.public_key
+  vpc_id              = module.dev.vpc_id
+  ecr_repository      = module.pipeline.ecr_repository
+  ecs_role_arn        = module.iam.ecs_role_arn
+  db_user_name        = var.db_user_name
+  db_user_password    = var.db_user_password
+  db_instance_class   = var.db_instance_class
+  rds_role_arn        = module.iam.rds_role_arn
+  my_domain           = var.my_domain
+  hosted_zone_id      = module.dns.hosted_zone_id
+  acm_certificate_arn = module.dns.acm_certificate_arn
 }
 
 module "iam" {
