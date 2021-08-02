@@ -53,6 +53,12 @@ module "pipeline" {
   codebuild_role_arn = module.iam.codebuild_role_arn
 }
 
+module "dns" {
+  source = "../../modules/dns"
+
+  my_domain = var.my_domain
+}
+
 module "dev_app" {
   source = "../../modules/ec2"
 
