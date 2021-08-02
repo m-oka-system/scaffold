@@ -10,3 +10,6 @@ variable "db_user_name" {}
 variable "db_user_password" {}
 variable "db_instance_class" {}
 variable "rds_role_arn" {}
+variable "my_domain" {}
+variable "hosted_zone_id" {}
+variable "acm_certificate_arn" {}
