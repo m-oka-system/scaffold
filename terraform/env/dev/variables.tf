@@ -31,3 +31,5 @@ variable "db_user_password" {}
 variable "db_instance_class" {
   default = "db.t3.micro"
 }
+
+variable "my_domain" {}
