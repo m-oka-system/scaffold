@@ -32,7 +32,7 @@ resource "aws_ecs_task_definition" "app" {
           }
         ]
 
-        command = ["rails","s","-p","3000","-b","0.0.0.0"]
+        command = ["rails", "s", "-p", "3000", "-b", "0.0.0.0"]
 
         environment = [
           {
@@ -48,19 +48,19 @@ resource "aws_ecs_task_definition" "app" {
         secrets = [
           {
             name      = "MYSQL_ROOT_USER"
-            valueFrom = "ecs-db-user"
+            valueFrom = aws_ssm_parameter.ecs_db_user.name
           },
           {
             name      = "MYSQL_ROOT_PASSWORD"
-            valueFrom = "ecs-db-password"
+            valueFrom = aws_ssm_parameter.ecs_db_password.name
           },
           {
             name      = "RDS_HOST_NAME"
-            valueFrom = "ecs-db-host-name"
+            valueFrom = aws_ssm_parameter.ecs_db_host_name.name
           },
           {
             name      = "SECRET_KEY_BASE"
-            valueFrom = "ecs-db-secret-key"
+            valueFrom = aws_ssm_parameter.rails_master_key.name
           }
         ]
 

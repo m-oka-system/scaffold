@@ -39,6 +39,7 @@ module "dev" {
   my_domain           = var.my_domain
   hosted_zone_id      = module.dns.hosted_zone_id
   acm_certificate_arn = module.dns.acm_certificate_arn
+  rails_master_key    = var.rails_master_key
 }
 
 module "iam" {

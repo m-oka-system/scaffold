@@ -33,3 +33,5 @@ variable "db_instance_class" {
 }
 
 variable "my_domain" {}
+
+variable "rails_master_key" {}
