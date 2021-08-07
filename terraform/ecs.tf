@@ -3,12 +3,12 @@
 ################################
 # Cluster
 resource "aws_ecs_cluster" "this" {
-  name = "${var.env}-${var.project}-cluster"
+  name = "${var.env}-${var.project}"
 }
 
 # Task definition
-resource "aws_ecs_task_definition" "app" {
-  family = "${var.env}-${var.project}-app"
+resource "aws_ecs_task_definition" "this" {
+  family = "${var.env}-${var.project}"
 
   execution_role_arn       = var.ecs_role_arn
   network_mode             = "awsvpc"
@@ -79,9 +79,9 @@ resource "aws_ecs_task_definition" "app" {
 
 # Service
 resource "aws_ecs_service" "this" {
-  name            = "${var.env}-${var.project}-service"
+  name            = "${var.env}-${var.project}"
   cluster         = aws_ecs_cluster.this.id
-  task_definition = aws_ecs_task_definition.app.arn
+  task_definition = aws_ecs_task_definition.this.arn
   desired_count   = 1
   launch_type     = "FARGATE"
 
