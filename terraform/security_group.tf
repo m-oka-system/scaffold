@@ -140,3 +140,30 @@ resource "aws_security_group_rule" "in_mysql_from_app" {
   security_group_id        = aws_security_group.rds.id
 }
 
+# VPC Endpoint
+resource "aws_security_group" "vpce" {
+  name   = "${var.env}-${var.project}-vpce-sg"
+  vpc_id = var.vpc_id
+
+  tags = {
+    Name = "${var.env}-${var.project}-vpce-sg"
+  }
+}
+
+resource "aws_security_group_rule" "in_https_from_vpc" {
+  type              = "ingress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = [aws_vpc.vpc.cidr_block]
+  security_group_id = aws_security_group.vpce.id
+}
+
+resource "aws_security_group_rule" "out_https_from_vpc" {
+  type              = "egress"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = [aws_vpc.vpc.cidr_block]
+  security_group_id = aws_security_group.vpce.id
+}

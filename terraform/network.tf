@@ -90,3 +90,34 @@ resource "aws_route_table_association" "private_rt" {
   subnet_id      = aws_subnet.private[count.index].id
   route_table_id = aws_route_table.private_rt.id
 }
+
+################################
+# VPC Endpoint
+################################
+resource "aws_vpc_endpoint" "if" {
+  for_each = toset([
+    "com.amazonaws.ap-northeast-1.ecr.dkr",
+    "com.amazonaws.ap-northeast-1.ecr.api",
+    "com.amazonaws.ap-northeast-1.ssm",
+    "com.amazonaws.ap-northeast-1.logs"
+  ])
+
+  vpc_id              = aws_vpc.vpc.id
+  service_name        = each.key
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = aws_subnet.private.*.id
+  security_group_ids  = [aws_security_group.vpce.id]
+  private_dns_enabled = true
+}
+
+resource "aws_vpc_endpoint" "gw" {
+  for_each = toset([
+    "com.amazonaws.ap-northeast-1.s3",
+  ])
+
+  vpc_id              = aws_vpc.vpc.id
+  service_name        = each.key
+  vpc_endpoint_type   = "Gateway"
+  route_table_ids     = [aws_route_table.private_rt.id]
+  private_dns_enabled = false
+}
