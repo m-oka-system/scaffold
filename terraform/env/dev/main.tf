@@ -68,7 +68,7 @@ module "dev_app" {
   project          = var.project
   env              = var.env
   subnet_id        = module.dev.public_subnet_id_0
-  sg_id            = module.dev.app_sg_id
+  sg_id            = module.dev.web_sg_id
   instance_profile = module.iam.instance_profile_name
   key_name         = module.dev.key_name
   role             = "app"
