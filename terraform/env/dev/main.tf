@@ -40,6 +40,16 @@ module "dev" {
   hosted_zone_id      = module.dns.hosted_zone_id
   acm_certificate_arn = module.dns.acm_certificate_arn
   rails_master_key    = var.rails_master_key
+  elb_bucket_name     = module.elb_log.name
+}
+
+module "elb_log" {
+  source = "../../modules/s3_logs"
+
+  env                 = var.env
+  bucket_name         = "${var.project}-elb-logs"
+  policy_file         = "elb_log.json"
+  elb_service_account = data.aws_elb_service_account.main.arn
 }
 
 module "iam" {

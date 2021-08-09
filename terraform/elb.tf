@@ -13,6 +13,12 @@ resource "aws_lb" "this" {
   security_groups = [
     aws_security_group.elb.id
   ]
+
+  access_logs {
+    bucket  = var.elb_bucket_name
+    prefix  = var.env
+    enabled = true
+  }
 }
 
 resource "aws_lb_listener" "http" {
