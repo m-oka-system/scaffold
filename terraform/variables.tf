@@ -14,3 +14,4 @@ variable "my_domain" {}
 variable "hosted_zone_id" {}
 variable "acm_certificate_arn" {}
 variable "rails_master_key" {}
+variable "elb_bucket_name" {}
