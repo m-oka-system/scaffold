@@ -7,7 +7,7 @@
         "AWS": "${elb_service_account}"
       },
       "Action": "s3:PutObject",
-      "Resource": "arn:aws:s3:::${bucket_name}/${env}/*"
+      "Resource": "arn:aws:s3:::${bucket_name}/*"
     }
   ]
 }

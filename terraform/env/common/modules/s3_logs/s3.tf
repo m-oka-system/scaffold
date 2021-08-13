@@ -43,7 +43,7 @@ resource "aws_s3_bucket_public_access_block" "this" {
 resource "aws_s3_bucket_policy" "this" {
   bucket = aws_s3_bucket.this.id
   policy = templatefile(
-    "../../modules/s3_logs/bucket_policies/${var.policy_file}",
+    "./modules/s3_logs/bucket_policies/${var.policy_file}",
     {
       env                 = var.env
       bucket_name         = var.bucket_name
