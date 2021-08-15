@@ -45,7 +45,6 @@ resource "aws_s3_bucket_policy" "this" {
   policy = templatefile(
     "./modules/s3_logs/bucket_policies/${var.policy_file}",
     {
-      env                 = var.env
       bucket_name         = var.bucket_name
       elb_service_account = var.elb_service_account
     }

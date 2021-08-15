@@ -14,7 +14,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      env = "common"
+      env = var.env
     }
   }
 }
@@ -24,7 +24,6 @@ provider "http" {}
 module "elb_log" {
   source = "./modules/s3_logs"
 
-  env                 = var.env
   bucket_name         = "${var.project}-elb-logs"
   policy_file         = "elb_log.json"
   elb_service_account = data.aws_elb_service_account.main.arn
@@ -39,7 +38,6 @@ module "pipeline" {
 
   region             = var.region
   project            = var.project
-  env                = var.env
   account_id         = data.aws_caller_identity.current.account_id
   codebuild_role_arn = module.iam.codebuild_role_arn
 }

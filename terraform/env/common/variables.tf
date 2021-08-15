@@ -14,5 +14,7 @@ variable "project" {
 }
 
 variable "env" {
-  default = "dev"
+  default = "common"
 }
+
+variable "my_domain" {}
